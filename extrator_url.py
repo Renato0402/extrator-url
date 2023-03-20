@@ -1,5 +1,6 @@
 import re
 
+
 class ExtratorURL:
     def __init__(self, url):
         self.url = self.sanitiza_url(url)
@@ -39,8 +40,13 @@ class ExtratorURL:
         valor = self.get_url_parametros()[indice_valor:indice_e_comercial]
         return valor
 
+    def __len__(self):
+        return len(self.url)
 
-#extrator_url = ExtratorURL(None)
-extrator_url = ExtratorURL("https://bytebank.com/cambio?quantidade=100&moedaDestino=dolar&moedaOrigem=real")
-valor_quantidade = extrator_url.get_valor_parametro("quantidade")
-print(valor_quantidade)
+    def __str__(self):
+        return self.url + "\n" + "Parâmetros: " + self.get_url_parametros() + "\n" + "URL Base: " + self.get_url_base()
+
+    def __eq__(self, other):
+        return self.url == other.url
+
+
